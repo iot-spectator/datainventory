@@ -87,3 +87,7 @@ class Inventory:
         """Destory the entire data inventory."""
         if self._inventory:
             shutil.rmtree(self._inventory)
+
+    def import_data(self, source_data: pathlib.Path) -> None:
+        """Import data into the data inventory."""
+        raise NotImplementedError("This function is not implemented.")
