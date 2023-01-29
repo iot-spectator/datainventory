@@ -3,7 +3,6 @@
 import sqlalchemy
 
 from datetime import date
-from datetime import timedelta
 
 from datainventory import _internal_store
 from datainventory import common
