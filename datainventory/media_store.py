@@ -107,4 +107,4 @@ class MediaStore(_internal_store.InternalStore):
         else:
             query_statement = sqlalchemy.select(Media)
             result = self._session.execute(query_statement)
-        return result.all()
+        return result.all()  # type: ignore
