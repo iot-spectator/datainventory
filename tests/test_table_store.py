@@ -22,7 +22,7 @@ def test_simple_case():
         device_id="test_device",
         metadata=metadata,
         session=Session(),
-        connection=engine.connect()
+        connection=engine.connect(),
     )
 
     TABLE = "temperature"
