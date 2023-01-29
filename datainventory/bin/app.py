@@ -1,3 +1,4 @@
+"""A CLI tool for exporting data."""
 import click
 import pathlib
 
