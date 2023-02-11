@@ -12,7 +12,7 @@ README = (HERE / "README.rst").read_text()
 # This call to setup() does all the work
 setuptools.setup(
     name="datainventory",
-    version="0.0.3",
+    version="0.0.5",
     description="Data Inventory",
     long_description=README,
     long_description_content_type="text/x-rst",
