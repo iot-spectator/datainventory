@@ -28,7 +28,7 @@ setuptools.setup(
     ],
     keywords="image and video database",
     packages=setuptools.find_packages(exclude=["diagram", "examples", "tests"]),
-    entry_points={"console_scripts": ["entry_point=datainventory.bin.app:main"]},
+    entry_points={"console_scripts": ["inventory-cli=datainventory.bin.app:main"]},
     install_requires=["click", "pandas", "SQLAlchemy"],
     python_requires=">=3.9",
 )
