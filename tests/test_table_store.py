@@ -3,7 +3,6 @@
 import sqlalchemy
 
 from datetime import date
-from datetime import timedelta
 
 from datainventory import _internal_store
 from datainventory import common
@@ -15,13 +14,14 @@ from sqlalchemy.orm import sessionmaker
 def test_simple_case():
     """Test the basic functionalities of table_store."""
     engine = sqlalchemy.create_engine("sqlite:///:memory:", echo=True, future=True)
-    metadata = sqlalchemy.MetaData(bind=engine)
+    metadata = sqlalchemy.MetaData()
     Session = sessionmaker(bind=engine)
     store = table_store.TableStore(
         create_key=_internal_store.CREATE_KEY,
         device_id="test_device",
         metadata=metadata,
         session=Session(),
+        connection=engine.connect(),
     )
 
     TABLE = "temperature"
@@ -34,6 +34,6 @@ def test_simple_case():
     data = [{"scale": "F", "value": 97.9}, {"scale": "C", "value": 23.7}]
     store.insert(table_name=TABLE, values=data)
 
-    range = common.Range(date.today(), interval=timedelta(days=1))
+    range = common.Range(date.today())
     output = store.query_data(TABLE, range=range)
     assert output["value"].count() == 2

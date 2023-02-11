@@ -30,7 +30,8 @@ class Inventory:
         if not self._inventory.exists():
             self._inventory.mkdir()
         self._engine = sqlalchemy.create_engine(f"sqlite:///{self._database}")
-        self._metadata = sqlalchemy.MetaData(bind=self._engine)
+        self._metadata = sqlalchemy.MetaData()
+        self._metadata.create_all(bind=self._engine)
 
     def get_media_store(self) -> media_store.MediaStore:
         """Return an instance of the media store."""
@@ -60,6 +61,7 @@ class Inventory:
             device_id=self._device_id,
             metadata=self._metadata,
             session=Session(),
+            connection=self._engine.connect(),
         )
 
     def export(self, dest_filename: pathlib.Path) -> pathlib.Path:
@@ -87,3 +89,7 @@ class Inventory:
         """Destory the entire data inventory."""
         if self._inventory:
             shutil.rmtree(self._inventory)
+
+    def import_data(self, source_data: pathlib.Path) -> None:
+        """Import data into the data inventory."""
+        raise NotImplementedError("This function is not implemented.")

@@ -24,12 +24,15 @@ class TableStore(_internal_store.InternalStore):
         device_id: str,
         metadata: sqlalchemy.MetaData,
         session: Session,
+        connection: sqlalchemy.engine.Connection,
     ) -> None:
         _internal_store.InternalStore.__init__(
             self, create_key=create_key, device_id=device_id
         )
         self._session = session
         self._metadata = metadata
+        self._connection = connection
+        self._metadata.create_all(bind=self._connection)
 
     def create_table(
         self, table_name: str, columns: Dict[str, common.ColumnType]
@@ -46,7 +49,7 @@ class TableStore(_internal_store.InternalStore):
                 for column_name, column_type in columns.items()
             ),
         )
-        table.create(checkfirst=True)
+        table.create(bind=self._connection, checkfirst=True)
 
     def insert(self, table_name: str, values: List[Dict]) -> None:
         """Insert data."""
