@@ -13,7 +13,9 @@ classifiers = [
     "Programming Language :: Python",
 ]
 keywords = ["image and video database"]
-
+dependencies = [
+    "click", "pandas", "SQLAlchemy"
+]
 
 [tool.setuptools.packages.find]
 exclude = ["examples", "tests"]
