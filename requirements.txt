@@ -13,3 +13,7 @@ click
 pandas
 SQLAlchemy
 sqlalchemy[mypy]
+
+
+# Uncomment if Installing the packages in development mode
+# -e .
