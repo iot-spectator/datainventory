@@ -1,4 +1,5 @@
 """Unit test for inventory."""
+
 import pathlib
 
 from datainventory import inventory

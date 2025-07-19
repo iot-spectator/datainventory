@@ -1,4 +1,5 @@
 """An example shows how to use Data Inventory."""
+
 import pathlib
 
 from datetime import datetime
